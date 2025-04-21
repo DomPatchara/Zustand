@@ -9,7 +9,7 @@ Create Habit tracker by using Zustand ( Global State Management )
 
 ## [0.] Set Up
 ```
-npm isntall zustand
+npm install zustand
 ```
 
 ## [1.] Create Store
