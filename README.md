@@ -1,5 +1,5 @@
 # Zustand 
-Create Habit tracker by using Zustand (state management)
+Create Habit tracker by using Zustand ( Global State Management )
 
 ## Why we should use Zustand more than Redux Toolkit ?
 - ขนาด bundle size เล็กกว่า Redux Toolkit มากถึง 20 เท่า
@@ -8,14 +8,13 @@ Create Habit tracker by using Zustand (state management)
 - มี persist middleware สำหรับเก็บข้อมูลใน localStorage ด้วย
 
 ## [0.] Set Up
-
 ```
 npm isntall zustand
 ```
 
 ## [1.] Create Store
-- devtools คือ Redux dev tool ช่วยให้เราเข้าไปดู State ใน Extension Chrome ได้ง่ายขึ้น
-- persist คือ การเก็บข้อมูลใน localStorage ( Refresh page แล้วข้อมูลยังอยู่ )
+- **devtools** คือ Redux dev tool ช่วยให้เราเข้าไปดู State ใน Extension Chrome ได้ง่ายขึ้น
+- **persist** คือ การเก็บข้อมูลใน localStorage ( Refresh page แล้วข้อมูลยังอยู่ )
 ```javascript
 import { create } from "zustand"
 import { devtools, persist } from "zustand/middleware"; // <----- Optional ใส่หลัง create(devtool(persist(set) => ....
