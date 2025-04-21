@@ -4,7 +4,9 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteIcon from "@mui/icons-material/Delete"
 
 const HabitList = () => {
-  const { habits, removeHabit, toggleHabit } = useHabitStore();
+  const habits = useHabitStore((state) => state.habits);
+  const removeHabit = useHabitStore((state) => state.removeHabit);
+  const toggleHabit = useHabitStore((state) => state.toggleHabit);
 
   const today = new Date().toDateString().split("")[0];
   console.log(today);

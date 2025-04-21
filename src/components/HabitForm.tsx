@@ -14,7 +14,8 @@ const HabitForm = () => {
   const [name, setName] = useState("");
   const [frequency, setFrequency] = useState<"daily" | "weekly">("daily");
 
-  const { habits, addHabit } = useHabitStore();
+  const habits = useHabitStore((state) => state.habits);
+  const addHabit = useHabitStore((state) => state.addHabit);
 
   console.log(habits)
 

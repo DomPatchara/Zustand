@@ -1,54 +1,39 @@
-# React + TypeScript + Vite
+# Zustand 
+Create Habit tracker by using Zustand (state management)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Why we should use Zustand more than Redux Toolkit ?
+- ขนาด bundle size เล็กกว่า Redux Toolkit มากถึง 20 เท่า
+- ไม่ต้องใช้ reducer, action และ slice 
+- ไม่ต้องใช้ Provider
+- มี persist middleware สำหรับเก็บข้อมูลใน localStorage ด้วย
 
-Currently, two official plugins are available:
+## [0.] Set Up
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+npm isntall zustand
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## [1.] Create Store
+- devtools คือ Redux dev tool ช่วยให้เราเข้าไปดู State ใน Extension Chrome ได้ง่ายขึ้น
+- persist คือ การเก็บข้อมูลใน localStorage ( Refresh page แล้วข้อมูลยังอยู่ )
+```javascript
+import { create } from "zustand"
+import { devtools, persist } from "zustand/middleware"; // <----- Optional ใส่หลัง create(devtool(persist(set) => ....
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+const useHabitStore = create((set) => ({
+  count: 0,
+  habits: [],
+  addHabit: () => set((state)=> ({ habits: [...state.habits, newHabit] })),
+  increment: () => set((state) => ({ count: state.count + 1 })),
+}));
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+export default useHabitStore;
+```
+
+## [2.] Use data from Store in Components
+```javascript
+import useHabitStore from "../store/store"
+
+const habits = useHabitStore((state) => state.habits);
+const addHabit = useHabitStore((state) => state.addHabit);
 ```
