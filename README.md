@@ -17,7 +17,7 @@ npm install zustand
 - **persist** คือ การเก็บข้อมูลใน localStorage ( Refresh page แล้วข้อมูลยังอยู่ )
 ```javascript
 import { create } from "zustand"
-import { devtools, persist } from "zustand/middleware"; // <----- Optional ใส่หลัง create(devtool(persist(set) => ....
+import { devtools, persist } from "zustand/middleware"; // <----- Optional ใส่ต่อจาก create(devtool(persist(set) => ....
 
 const useHabitStore = create((set) => ({
   count: 0,
