@@ -33,6 +33,6 @@ export default useHabitStore;
 ```javascript
 import useHabitStore from "../store/store"
 
-const habits = useHabitStore((state) => state.habits);
-const addHabit = useHabitStore((state) => state.addHabit);
+const { habits, addHabbit } = useHabitStore();
+
 ```
